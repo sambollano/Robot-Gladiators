@@ -18,9 +18,6 @@
     var enemy2 = "Amy Android"
     var enemy3 = "Robo Trumble"
     console.log(enemyNames);
-    console.log(enemyNames[0]);
-    console.log(enemyNames[1]);
-    console.log(enemyNames[2]);
     console.log(enemyNames.length);
     for(var i = 0; i < enemyNames.length; i++) {
     console.log(enemyNames[i]);
@@ -78,3 +75,4 @@
     for(var i = 0; i < enemyNames.length; i++) {
     fight(enemyNames[i]);
     }
+    console.log
