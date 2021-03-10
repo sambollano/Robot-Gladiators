@@ -24,7 +24,7 @@
 // Pick new enemy to fight based on the index of the enemyNames array
     var pickedEnemyName = enemyNames[i];
 // reset enemyHealth before starting a fight
-    enemyHealth = 50;
+    ealth = Math.floor(Math.random() * 21) + 40;
   
     fight(pickedEnemyName);
     }
@@ -61,7 +61,7 @@ else {
 // if player choses to fight, then fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
 // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = enemyHealth - playerAttack;
+    enemyHealth = Math.max(0, enemyHealth - playerAttack);
     console.log(
     playerName + " attacked " + enemyNames + ". " + enemyNames + " now has " + enemyHealth + " health remaining."
     );
@@ -74,14 +74,15 @@ else {
     window.alert(enemyNames + " still has " + enemyHealth + " health left.");
     }
 // remove player's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = playerHealth - enemyAttack;
+    playerHealth = Math.max(0, playerHealth - playerAttack);
     console.log(
     enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
     );
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+playerHealth = Math.max(0, playerHealth - damage);
 // check player's health
     if (playerHealth <= 0) {
     window.alert(playerName + " has died!");
-    
     } 
     else {
     window.alert(playerName + " still has " + playerHealth + " health left.");
@@ -90,16 +91,22 @@ else {
     if (promptFight === "skip" || promptFight === "SKIP") {
 // confirm player wants to skip
     var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-  
 // if yes (true), leave fight
     if (confirmSkip) {
-      window.alert(playerName + " has decided to skip this fight. Goodbye!");
-      // subtract money from playerMoney for skipping
-      playerMoney = playerMoney - 10;
-      console.log("playerMoney", playerMoney)
+    window.alert(playerName + " has decided to skip this fight. Goodbye!");
+// subtract money from playerMoney for skipping
+    playerMoney = Math.max(0, playerMoney - 10);
+    console.log("playerMoney", playerMoney)
 // if no (false), ask question again by running fight() again
     for(var i = 0; i < enemyNames.length; i++); {
     fight(pickedEnemyName); 
-        }
+// function to generate a random numeric value
+    enemyHealth = Math.max(0, enemyHealth - damage);
+// function to generate a random numeric value
+    var randomNumber = function() {
+    var value = Math.floor(Math.random() * (21)) + 40;
+    return value;
+  };
+     }
      }
   }}
